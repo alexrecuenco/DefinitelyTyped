@@ -62,7 +62,13 @@ export type BuiltInParsers = Record<BuiltInParserName, BuiltInParser>;
 
 export type CustomParser = (text: string, parsers: BuiltInParsers, options: Options) => AST;
 
-export interface Options extends Partial<RequiredOptions> {}
+export interface OverrideOptions {
+     files: string | string[];
+     options: Partial<RequiredOptions>;
+}            
+export interface Options extends Partial<RequiredOptions> {
+     overrides: OverrideOptions[];                     
+}
 export interface RequiredOptions extends doc.printer.Options {
     /**
      * Print semicolons at the ends of statements.
